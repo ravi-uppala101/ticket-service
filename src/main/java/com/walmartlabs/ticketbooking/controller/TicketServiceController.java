@@ -4,17 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Import;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.walmartlabs.ticketbooking.TicketService;
 import com.walmartlabs.ticketbooking.config.TicketBookingConfig;
 import com.walmartlabs.ticketbooking.domain.SeatHold;
 
-@Controller
+@RestController
 @EnableAutoConfiguration
 @Import(TicketBookingConfig.class)
+@RequestMapping("/ticket-service")
 public class TicketServiceController {
 	
 	@Autowired
@@ -26,16 +28,18 @@ public class TicketServiceController {
         return ticketService.numSeatsAvailable();
     }
     
-    @RequestMapping("/holdSeats")
+    @RequestMapping(method = RequestMethod.POST, value ="/holdSeats")
     @ResponseBody
-    SeatHold findAndHoldSeats(int numSeats, String customerEmail) {
+    SeatHold findAndHoldSeats(Integer numSeats, String customerEmail) {
+    	System.out.println("numSeats = "+numSeats);
+    	System.out.println("customerEmail = "+customerEmail);
         return ticketService.findAndHoldSeats(numSeats, customerEmail);
     }
     
-    @RequestMapping("/reserveSeats")
+    @RequestMapping(method = RequestMethod.POST, value = "/reserveSeats")
     @ResponseBody
-    String reserveSeats(int numSeats, String customerEmail) {
-        return ticketService.reserveSeats(numSeats, customerEmail);
+    String reserveSeats(Integer seatHoldId, String customerEmail) {
+        return ticketService.reserveSeats(seatHoldId, customerEmail);
     }
 
     public static void main(String[] args) throws Exception {

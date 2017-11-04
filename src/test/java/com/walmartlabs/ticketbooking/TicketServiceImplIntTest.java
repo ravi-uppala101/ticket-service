@@ -3,6 +3,7 @@ package com.walmartlabs.ticketbooking;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -13,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.walmartlabs.ticketbooking.config.TicketBookingConfig;
 import com.walmartlabs.ticketbooking.domain.SeatHold;
 
+// remove below ignore annotation if you want to run this integration testing.
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TicketBookingConfig.class) 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -58,7 +61,7 @@ public class TicketServiceImplIntTest {
 		assertEquals("ravinderuppala3@gmail.com", seatHold3.getCustomerEmailId());
 		System.out.println("seatHoldId3 = "+seatHold3.getSeatHoldId());
 		try {
-			Thread.sleep(6000L);
+			Thread.sleep(12000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +77,7 @@ public class TicketServiceImplIntTest {
 		SeatHold seatHold = ticketService.findAndHoldSeats(6, "ravinderuppala1@gmail.com");
 		assertEquals("ravinderuppala1@gmail.com", seatHold.getCustomerEmailId());
 		System.out.println("seatHoldId = "+seatHold.getSeatHoldId());
-		Thread.sleep(6000L);
+		Thread.sleep(12000L);
 		int total = ticketService.numSeatsAvailable();
 		assertEquals(264, total);
 		
@@ -82,7 +85,7 @@ public class TicketServiceImplIntTest {
 		SeatHold seatHold1 = ticketService.findAndHoldSeats(58, "ravi.uppala1@gmail.com");
 		assertEquals("ravi.uppala1@gmail.com", seatHold1.getCustomerEmailId());
 		System.out.println("seatHoldId = "+seatHold1.getSeatHoldId());
-		Thread.sleep(6000L);
+		Thread.sleep(12000L);
 		int total1 = ticketService.numSeatsAvailable();
 		assertEquals(264, total1);
 		
