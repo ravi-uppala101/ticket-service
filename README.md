@@ -23,6 +23,9 @@
     1. project is unit tested using Junit framework and mockito mocking framework. code coverage for this project is 96%.
     2. Integration testing of the project is done and testcase is available in test folder. Used spring integration testing frameowork.
     
+ # Integration Testing Client file
+    TicketServiceImplIntTest is located in pacakge com.walmartlabs.ticketbooking in test folder.
+    
  # Building the project
     1. clone the project to developer workstation
         git clone 
@@ -34,5 +37,9 @@
         
   # Curl commands for invoking the service
     1. finding no of available seats
-    - 
+    
+      curl http://localhost:8080/available
+      
+    2. finding and holding seats
+    
         
