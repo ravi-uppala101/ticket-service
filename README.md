@@ -37,9 +37,35 @@
         
   # Curl commands for invoking the service
     1. finding no of available seats
-    
-      curl http://localhost:8080/available
+    # Request
+      curl http://localhost:8080/ticket-service/available
+    # Response
+      300
       
     2. finding and holding seats
+    # Request
+    curl -X POST \
+    http://localhost:8080/ticket-service/holdSeats \
+     -H 'cache-control: no-cache' \
+     -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+     -F numSeats=10 \
+     -F customerEmail=ravinderuppala@gmail.com
+     # Response
+     {"seatHoldId":1978068869,"customerEmailId":"ravinderuppala@gmail.com"}
+     
+     3. reserving seats
+     pass the seatHoldId from holdSeats response to reserveSeats input
+     # Request:
+     curl -X POST \
+     http://localhost:8080/ticket-service/reserveSeats \
+     -H 'cache-control: no-cache' \
+     -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+     -F seatHoldId=879105000 \
+     -F customerEmail=ravinderuppala@gmail.com
+     # Response
+     a3ff84c3-37d2-4ddb-8707-96e427ce277f
+     
+     
+     
     
         
